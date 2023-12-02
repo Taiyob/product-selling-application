@@ -2,9 +2,9 @@
   transition: transform 0.3s ease;
 }
 #navbar.active {
-  transform: scale(1);
+  transform: translateY(70px) scale(1);
+  transition: transform 2s ease;
   display: block;
-  margin-top: 70px;
   margin-right: 30px;
 }
 .menu-item {

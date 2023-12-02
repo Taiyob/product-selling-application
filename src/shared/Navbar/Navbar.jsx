@@ -1,22 +1,49 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { FaRegPaperPlane } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [isMenuActive, setMenuActive] = useState(false);
-  let menuNav = document.querySelector('.navbar');
+  const navigate = useNavigate();
+  let menuNav = document.querySelector(".navbar");
   const handleMenu = () => {
     setMenuActive(!isMenuActive);
-    menuNav?.classList?.toggle('active');
+    menuNav?.classList?.toggle("active");
   };
   window.onscroll = () => {
-    menuNav?.classList?.remove('active');
-  }
+    menuNav?.classList?.remove("active");
+  };
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate('/login');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "user has been logged out successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        console.log(err.code);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>',
+        });
+      });
+  };
   return (
     <div>
       <div className="fixed top-0 left-0 right-0 bg-white shadow-lg p-6 md:p-4 z-10 flex items-center justify-between">
@@ -35,12 +62,19 @@ const Navbar = () => {
           </label>
         </form>
         <div className="flex">
+          <NavLink to="/">
+            <div className="h-20 w-14 leading-14  text-2xl rounded-md ml-2 text-gray-700 cursor-pointer text-center bg-gray-200 hover:text-[#fff] hover:bg-orange-800">
+              <FaHome className="mb-40 ml-2"></FaHome>
+            </div>
+          </NavLink>
           <div className="h-20 w-14 leading-14  text-2xl rounded-md ml-2 text-gray-700 cursor-pointer text-center bg-gray-200 hover:text-[#fff] hover:bg-orange-800">
             <FaMoon className="mb-40"></FaMoon>
           </div>
-          <div className="h-20 w-14 leading-14  text-2xl rounded-md ml-2 text-gray-700 cursor-pointer text-center bg-gray-200 hover:text-[#fff] hover:bg-orange-800">
-            <FaUserAlt className=" "></FaUserAlt>
-          </div>
+          {
+            user && <NavLink to='/profile'><div className="h-20 w-14 leading-14  text-2xl rounded-md ml-2 text-gray-700 cursor-pointer text-center bg-gray-200 hover:text-[#fff] hover:bg-orange-800">
+            <FaUserAlt className="ml-2"></FaUserAlt>
+          </div></NavLink>
+          }
           <div
             onClick={handleMenu}
             className="h-20 w-14 leading-14  text-2xl rounded-md ml-2 text-gray-700 cursor-pointer text-center bg-gray-200 hover:text-[#fff] hover:bg-orange-800"
@@ -53,15 +87,29 @@ const Navbar = () => {
           className="absolute bg-white shadow-xl pr-10 rounded-lg top-32 right-7 transform scale-0 transform-origin-top-right w-96 navbar"
           id="navbar"
         >
-          <Link className="block text-gray-700 m-4 p-4 text-1.5xl rounded-md hover:text-orange-600 hover:bg-gray-200 hover:pl-8 menu-item">
-            Home
-          </Link>
+          {user ? 
+            <Link
+              onClick={handleLogOut}
+              className="block text-gray-700 m-4 p-4 text-1.5xl rounded-md hover:text-orange-600 hover:bg-gray-200 hover:pl-8 menu-item"
+            >
+              Logout
+            </Link>
+           : 
+            <>
+              <Link
+              to="/login"
+              className="block text-gray-700 m-4 p-4 text-1.5xl rounded-md hover:text-orange-600 hover:bg-gray-200 hover:pl-8 menu-item"
+              >
+                Login
+              </Link>
+            </>
+          }
 
           <Link className="block text-gray-700 m-4 p-4 text-1.5xl rounded-md hover:text-orange-600 hover:bg-gray-200 hover:pl-8 menu-item">
-            Home
+            Add Product
           </Link>
           <Link className="block text-gray-700 m-4 p-4 text-1.5xl rounded-md hover:text-orange-600 hover:bg-gray-200 hover:pl-8 menu-item">
-            Home
+            My Cart
           </Link>
         </nav>
       </div>
