@@ -18,7 +18,7 @@ const Login = () => {
         console.log(user?.displayName);
         console.log(user?.email);
         // <img src={user?.photoURL} alt="" />
-        navigate('/');
+        navigate("/");
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -45,7 +45,7 @@ const Login = () => {
         console.log(user?.displayName);
         console.log(user?.email);
         // <img src={user?.photoURL} alt="" />
-        navigate('/');
+        navigate("/");
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -74,9 +74,23 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         const user = res?.user?.displayName;
+        const loggedUser = {
+          email,
+          lastLoggedAt: res?.user?.metadata?.lastSignInTime,
+        };
+        console.log(loggedUser);
+        fetch("http://localhost:5000/users", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loggedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
         console.log(user);
         form.reset();
-        navigate('/');
+        navigate("/");
         Swal.fire({
           position: "top-end",
           icon: "success",

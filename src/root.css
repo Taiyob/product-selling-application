@@ -41,13 +41,13 @@ body {
   background: var(--bg-color-2);
 }
 
-body.active {
+/* body.active {
   --text-color-1: #fff;
   --text-color-2: #eee;
   --bg-color-1: #333;
   --bg-color-2: #222;
   --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
-}
+} */
 div{
     padding: 2rem 7%;
 }

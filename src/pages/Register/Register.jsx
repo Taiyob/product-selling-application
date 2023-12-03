@@ -38,19 +38,31 @@ const Register = () => {
         const user = result.user;
         console.log(user?.displayName);
         console.log(user?.email);
+        const createdAt = result?.user?.metadata?.creationTime;
         // <img src={user?.photoURL} alt="" />
+        const newUser = { email, password, createdAt };
+        console.log(newUser);
         updateProfile(user, {
           displayName: name,
           photoURL: "https://example.com/jane-q-user/profile.jpg",
         })
           .then(() => {
-            console.log("updated");
+            console.log(`updated`);
           })
           .catch((err) => {
             console.log(err);
           });
-          form.reset();
-          navigate('/');
+        form.reset();
+        navigate("/");
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
         Swal.fire({
           position: "top-end",
           icon: "success",

@@ -8,7 +8,8 @@ const Banner = () => {
         <div className="flex-1 flex-shrink-1 flex-grow-1 max-w-[45rem]">
           <img
             className="w-full"
-            src="https://i.ibb.co/vz8Pdsc/plane.png"
+            src="https://ibb.co/GF6MsQh"
+            // src="https://i.ibb.co/vz8Pdsc/plane.png"
             alt=""
           />
         </div>
