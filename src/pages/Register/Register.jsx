@@ -54,7 +54,7 @@ const Register = () => {
           });
         form.reset();
         navigate("/");
-        fetch("http://localhost:5000/users", {
+        fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { useContext, useRef, useState } from "react";
@@ -11,6 +11,7 @@ const Login = () => {
   const emailRef = useRef(null);
   const [validEmail, setValidEmail] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
@@ -18,7 +19,7 @@ const Login = () => {
         console.log(user?.displayName);
         console.log(user?.email);
         // <img src={user?.photoURL} alt="" />
-        navigate("/");
+        navigate(location?.state ? location.state : '/');
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -45,7 +46,7 @@ const Login = () => {
         console.log(user?.displayName);
         console.log(user?.email);
         // <img src={user?.photoURL} alt="" />
-        navigate("/");
+        navigate(location?.state ? location.state : '/');
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -79,7 +80,7 @@ const Login = () => {
           lastLoggedAt: res?.user?.metadata?.lastSignInTime,
         };
         console.log(loggedUser);
-        fetch("http://localhost:5000/users", {
+        fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users", {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -90,7 +91,7 @@ const Login = () => {
           .then((data) => console.log(data));
         console.log(user);
         form.reset();
-        navigate("/");
+        navigate(location?.state ? location.state : '/');
         Swal.fire({
           position: "top-end",
           icon: "success",

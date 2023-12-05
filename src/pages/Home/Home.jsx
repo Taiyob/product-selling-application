@@ -7,9 +7,39 @@ import { SiIntel } from "react-icons/si";
 import { SiSymphony } from "react-icons/si";
 import { Link, useLoaderData } from "react-router-dom";
 
+const brandIcons = {
+  Apple: FaApple,
+  Samsung: SiSamsung,
+  Sony: SiSony,
+  Google: FaGoogle,
+  Intel: SiIntel,
+  Symphony: SiSymphony,
+};
+
 const Home = () => {
   const lodedBrandName = useLoaderData();
   console.log(lodedBrandName);
+  const brandCardComponents = lodedBrandName.map((brandName, index) => {
+    const IconComponent = brandIcons[brandName.name];
+    return (
+      <div key={brandName._id} className="">
+        <Link to={`/brands/${brandName._id}`}>
+          <div className="rounded-md relative p-8 bg-white shadow-lg">
+            {IconComponent && (
+              <IconComponent className="h-24 w-24 leading-24 text-center text-2xl text-white bg-orange-500 rounded-full mb-2" />
+            )}
+            <h3 className="text-2xl py-2 text-var(--text-color-1)">
+              {brandName.name}
+            </h3>
+            <p>
+              Empowering Innovation, Connecting Hearts, Shaping Tomorrow with Simplicity and Elegance
+            </p>
+          </div>
+        </Link>
+      </div>
+    );
+  });
+
   return (
     <div>
       <Banner></Banner>
@@ -58,85 +88,9 @@ const Home = () => {
         <h1 className="text-center text-4xl mb-10 font-semibold text-black">
           Brands
         </h1>
-        {lodedBrandName.map((brandName) => (
-          <div
-            key={brandName._id}
-            className="grid grid-cols-3 grid-flow-row grid-rows-1 gap-6 md:gap-8 lg:gap-12 xl:gap-16"
-          >
-            <Link to="/brands">
-              <div className="rounded-md relative p-8 bg-white shadow-lg">
-                <FaApple className="h-24 w-24 leading-24 text-center text-2xl text-whitebg-orange-500 rounded-full mb-2"></FaApple>
-                <h3 className="text-2xl py-2 text-var(--text-color-1)">
-                  {brandName.name}
-                </h3>
-                <p>
-                  Empowering Innovation, Connecting Hearts, Shaping Tomorrow
-                  with Simplicity and Elegance
-                </p>
-              </div>
-            </Link>
-            <Link to="/brands">
-              <div className="rounded-md relative p-8 bg-white shadow-lg">
-                <SiSamsung className="h-24 w-24 leading-24 text-center text-2xl text-whitebg-orange-500 rounded-full mb-2"></SiSamsung>
-                <h3 className="text-2xl py-2 text-var(--text-color-1)">
-                  {brandName.name}
-                </h3>
-                <p>
-                  Harmony in Complexity, Symphony in Simplicity – SiSymphony
-                  Unleashed.
-                </p>
-              </div>
-            </Link>
-            <Link to="/brands">
-              <div className="rounded-md relative p-8 bg-white shadow-lg">
-                <SiSony className="h-24 w-24 leading-24 text-center text-2xl text-whitebg-orange-500 rounded-full mb-2"></SiSony>
-                <h3 className="text-2xl py-2 text-var(--text-color-1)">
-                  {brandName.name}
-                </h3>
-                <p>
-                  Elevate Your Senses, Experience Innovation, Unleashing
-                  Tomorrows Entertainment Today – Sony.
-                </p>
-              </div>
-            </Link>
-            <Link to="/brands">
-              <div className="rounded-md relative p-8 bg-white shadow-lg">
-                <FaGoogle className="h-24 w-24 leading-24 text-center text-2xl text-whitebg-orange-500 rounded-full mb-2"></FaGoogle>
-                <h3 className="text-2xl py-2 text-var(--text-color-1)">
-                  {brandName.name}
-                </h3>
-                <p>
-                  Google: Enabling Dreams, Empowering Lives, and Connecting the
-                  World Innovatively.
-                </p>
-              </div>
-            </Link>
-            <Link to="/brands">
-              <div className="rounded-md relative p-8 bg-white shadow-lg">
-                <SiIntel className="h-24 w-24 leading-24 text-center text-2xl text-whitebg-orange-500 rounded-full mb-2"></SiIntel>
-                <h3 className="text-2xl py-2 text-var(--text-color-1)">
-                  {brandName.name}
-                </h3>
-                <p>
-                  Intel: Pioneering Innovation, Powering a Connected and
-                  Intelligent Future. Unleashing Tomorrows Possibilities.
-                </p>
-              </div>
-            </Link>
-            <Link to="/brands">
-              <div className="rounded-md relative p-8 bg-white shadow-lg">
-                <SiSymphony className="h-24 w-24 leading-24 text-center text-2xl text-whitebg-orange-500 rounded-full mb-2"></SiSymphony>
-                <h3 className="text-2xl py-2 text-var(--text-color-1)">
-                  {brandName.name}
-                </h3>
-                <p>
-                  Harmonizing Technology, Enriching Lives with Seamless
-                  Connectivity and Innovation.
-                </p>
-              </div>
-            </Link>
-          </div>
-        ))}
+        <div className="grid grid-cols-3 gap-6 md:gap-8 lg:gap-12 xl:gap-16">
+          {brandCardComponents}
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const InputBrand = () => {
     console.log(name);
     const newBrandName = { name };
     form.reset();
-    fetch("http://localhost:5000/brand-name", {
+    fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brand-name", {
       method: "POST",
       headers: {
         "content-type": "application/json",

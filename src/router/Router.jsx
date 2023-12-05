@@ -8,16 +8,20 @@ import Profile from "../pages/Profile/Profile";
 import Users from "../components/Users/Users";
 import Brands from "../components/Brands/Brands";
 import InputBrand from "../components/InputBrand/InputBrand";
+import AddProducts from "../components/AddProducts/AddProducts";
+import Error from "../shared/Error/Error";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
-    path: "/",
+    path: "https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/",
     element: <Root></Root>,
+    errorElement: <Error></Error>,
     children: [
       {
-        path: "/",
+        path: "https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/brand-name"),
+        loader: () => fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brand-name"),
       },
       {
         path: "/register",
@@ -33,20 +37,33 @@ const Router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
       },
       {
         path: "/users",
-        element: <Users></Users>,
-        loader: () => fetch("http://localhost:5000/users"),
+        element: <PrivateRoute><Users></Users></PrivateRoute>,
+        loader: () => fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users"),
       },
       {
         path: "/input-brands",
-        element: <InputBrand></InputBrand>,
+        element: <PrivateRoute><InputBrand></InputBrand></PrivateRoute>,
       },
       {
-        path: "/brands",
-        element: <Brands></Brands>,
+        path: "/brands/:id",
+        element: <PrivateRoute><Brands></Brands></PrivateRoute>,
+        loader: async ({ params }) => {
+          const brandResponse = await fetch(`https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brand-name/${params.id}`);
+          const productResponse = await fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/add-product");
+      
+          const brandData = await brandResponse.json();
+          const productData = await productResponse.json();
+      
+          return { brandData, productData };
+        },
+      },
+      {
+        path: "/add-products",
+        element: <PrivateRoute><AddProducts></AddProducts></PrivateRoute>,
       },
     ],
   },
