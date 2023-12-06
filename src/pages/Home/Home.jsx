@@ -19,7 +19,7 @@ const brandIcons = {
 const Home = () => {
   const lodedBrandName = useLoaderData();
   console.log(lodedBrandName);
-  const brandCardComponents = lodedBrandName.map((brandName, index) => {
+  const brandCardComponents = lodedBrandName.map((brandName) => {
     const IconComponent = brandIcons[brandName.name];
     return (
       <div key={brandName._id} className="">

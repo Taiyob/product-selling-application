@@ -21,8 +21,8 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        // loader: () => fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brand-name"),
-        loader: () => fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/brand-name"),
+        // loader: () => fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brandName"),
+        loader: () => fetch("https://myapp-tawny-psi.vercel.app/brandName"),
       },
       {
         path: "/register",
@@ -44,20 +44,20 @@ const Router = createBrowserRouter([
         path: "/users",
         element: <PrivateRoute><Users></Users></PrivateRoute>,
         // loader: () => fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users"),
-        loader: () => fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/users"),
+        loader: () => fetch("https://myapp-tawny-psi.vercel.app/users"),
       },
       {
-        path: "/input-brands",
+        path: "/inputBrands",
         element: <PrivateRoute><InputBrand></InputBrand></PrivateRoute>,
       },
       {
         path: "/brands/:id",
         element: <PrivateRoute><Brands></Brands></PrivateRoute>,
         loader: async ({ params }) => {
-          // const brandResponse = await fetch(`https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brand-name/${params.id}`);
-          const brandResponse = await fetch(`https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/brand-name/${params.id}`);
+          // const brandResponse = await fetch(`https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brandName/${params.id}`);
+          const brandResponse = await fetch(`https://myapp-tawny-psi.vercel.app/brandName/${params.id}`);
           // const productResponse = await fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/add-product");
-          const productResponse = await fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/add-product");
+          const productResponse = await fetch("https://myapp-tawny-psi.vercel.app/addProducts");
       
           const brandData = await brandResponse.json();
           const productData = await productResponse.json();
@@ -66,7 +66,7 @@ const Router = createBrowserRouter([
         },
       },
       {
-        path: "/add-products",
+        path: "/addProducts",
         element: <PrivateRoute><AddProducts></AddProducts></PrivateRoute>,
       },
     ],

@@ -123,7 +123,7 @@ const Navbar = () => {
           )}
 
           <Link
-            to="/add-products"
+            to="/addProducts"
             className="block text-gray-700 m-4 p-4 text-1.5xl rounded-md hover:text-orange-600 hover:bg-gray-200 hover:pl-8 menu-item"
           >
             Add Product

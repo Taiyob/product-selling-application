@@ -23,7 +23,7 @@ const AddProducts = () => {
     };
     form.reset();
     // fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/add-product", {
-    fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/add-product", {
+    fetch("https://myapp-tawny-psi.vercel.app/add-product", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -72,7 +72,7 @@ const AddProducts = () => {
                   id="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Type product name"
-                  required=""
+                  required
                 />
               </div>
               <div className="w-full">
@@ -110,7 +110,7 @@ const AddProducts = () => {
                   id="price"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="$2999"
-                  required=""
+                  required
                 />
               </div>
               <div>
@@ -146,7 +146,7 @@ const AddProducts = () => {
                   id="item-weight"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="5"
-                  required=""
+                  required
                 />
               </div>
               <div className="mb-6 w-full sm:col-span-2">

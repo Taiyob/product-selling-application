@@ -8,8 +8,8 @@ const InputBrand = () => {
     console.log(name);
     const newBrandName = { name };
     form.reset();
-    // fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brand-name", {
-    fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/brand-name", {
+    // fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brandName", {
+    fetch("https://myapp-tawny-psi.vercel.app/brandName", {
       method: "POST",
       headers: {
         "content-type": "application/json",
