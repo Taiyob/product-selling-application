@@ -80,7 +80,8 @@ const Login = () => {
           lastLoggedAt: res?.user?.metadata?.lastSignInTime,
         };
         console.log(loggedUser);
-        fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users", {
+        // fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users", {
+        fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/users", {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

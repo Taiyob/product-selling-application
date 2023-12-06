@@ -22,7 +22,8 @@ const AddProducts = () => {
       description,
     };
     form.reset();
-    fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/add-product", {
+    // fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/add-product", {
+    fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/add-product", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -54,7 +54,8 @@ const Register = () => {
           });
         form.reset();
         navigate("/");
-        fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users", {
+        // fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users", {
+        fetch("https://myapp-ja4r0dcwt-md-oli-ullahs-projects.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
