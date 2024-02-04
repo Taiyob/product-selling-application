@@ -23,7 +23,7 @@ const AddProducts = () => {
     };
     form.reset();
     // fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/add-product", {
-    fetch("https://myapp-tawny-psi.vercel.app/add-product", {
+    fetch("https://myapp-tawny-psi.vercel.app/addProducts", {
       method: "POST",
       headers: {
         "content-type": "application/json",

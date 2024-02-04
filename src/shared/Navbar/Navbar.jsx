@@ -18,14 +18,16 @@ const Navbar = () => {
   let menuNav = document.querySelector(".navbar");
   const handleMenu = () => {
     setMenuActive(!isMenuActive);
-    menuNav?.classList?.toggle("active");
+    if (menuNav) {
+      menuNav.classList.toggle("active", isMenuActive);
+    }
   };
   window.onscroll = () => {
     menuNav?.classList?.remove("active");
   };
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
-    document.body.classList.toggle('dark-mode'); // Toggle the class on the body
+    document.body.classList.toggle("dark-mode"); // Toggle the class on the body
   };
   const handleLogOut = () => {
     logOut()
@@ -101,7 +103,9 @@ const Navbar = () => {
           </div>
         </div>
         <nav
-          className="absolute bg-white shadow-xl pr-10 rounded-lg top-32 right-7 transform scale-0 transform-origin-top-right w-96 navbar"
+          className={`absolute flex flex-col-reverse bg-white shadow-xl pr-10 rounded-lg top-32 right-7 transform scale-0 transform-origin-top-right w-96 navbar ${
+            isMenuActive ? "scale-100" : ""
+          }`}
           id="navbar"
         >
           {user ? (

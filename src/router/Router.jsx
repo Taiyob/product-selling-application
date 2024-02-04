@@ -11,6 +11,8 @@ import InputBrand from "../components/InputBrand/InputBrand";
 import AddProducts from "../components/AddProducts/AddProducts";
 import Error from "../shared/Error/Error";
 import PrivateRoute from "./PrivateRoute";
+import StaticBrand from "../components/Brands/StaticBrand";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 
 const Router = createBrowserRouter([
   {
@@ -38,36 +40,67 @@ const Router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/users",
-        element: <PrivateRoute><Users></Users></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Users></Users>
+          </PrivateRoute>
+        ),
         // loader: () => fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/users"),
         loader: () => fetch("https://myapp-tawny-psi.vercel.app/users"),
       },
       {
         path: "/inputBrands",
-        element: <PrivateRoute><InputBrand></InputBrand></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <InputBrand></InputBrand>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/brands/:id",
-        element: <PrivateRoute><Brands></Brands></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Brands></Brands>
+          </PrivateRoute>
+        ),
         loader: async ({ params }) => {
-          // const brandResponse = await fetch(`https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/brandName/${params.id}`);
-          const brandResponse = await fetch(`https://myapp-tawny-psi.vercel.app/brandName/${params.id}`);
-          // const productResponse = await fetch("https://myapp-88098zwbe-md-oli-ullahs-projects.vercel.app/add-product");
-          const productResponse = await fetch("https://myapp-tawny-psi.vercel.app/addProducts");
-      
+          const brandResponse = await fetch(
+            `https://myapp-tawny-psi.vercel.app/brandName/${params.id}`
+          );
+          const productResponse = await fetch(
+            "https://myapp-tawny-psi.vercel.app/addProducts"
+          );
+
           const brandData = await brandResponse.json();
           const productData = await productResponse.json();
-      
+
           return { brandData, productData };
         },
       },
       {
+        path: "/staticBrandPage",
+        element: <StaticBrand></StaticBrand>,
+        loader: () => fetch("https://myapp-tawny-psi.vercel.app/addProducts"),
+      },
+      {
         path: "/addProducts",
-        element: <PrivateRoute><AddProducts></AddProducts></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddProducts></AddProducts>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/product-details/:id",
+        element: <ProductDetails></ProductDetails>,
       },
     ],
   },
